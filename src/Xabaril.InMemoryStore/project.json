@@ -1,0 +1,19 @@
+﻿{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "NETStandard.Library": "1.6.1",
+    "System.Reflection": "4.3.0",
+    "Microsoft.Extensions.Caching.Memory": "1.1.0",
+    "Microsoft.Extensions.Logging.Abstractions": "1.1.0",
+    "Xabaril": "1.0.0-*"
+  },
+  "buildOptions": {
+    "warningsAsErrors": true
+  },
+  "frameworks": {
+    "netstandard1.6.1": {
+      "imports": "dnxcore50"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "1.1.0"
+    },
+    "xunit": "2.2.0-beta4-build3444",
+    "dotnet-test-xunit": "2.2.0-preview2-build1029",
+    "Microsoft.Extensions.Logging.Console": "1.1.0",
+    "Microsoft.AspNetCore.TestHost": "1.1.0",
+    "Microsoft.AspNetCore.Mvc": "1.1.0",
+    "Microsoft.DotNet.InternalAbstractions": "1.0.0",
+    "Microsoft.Extensions.Caching.Memory": "1.1.0",
+    "Xabaril": "1.0.0-*",
+    "System.Reflection": "4.3.0",
+    "Xabaril.InMemoryStore": "1.0.0-*",
+    "FluentAssertions": "4.18.0"
+  },
+  "buildOptions": {
+    "warningsAsErrors": true
+  },
+  "testRunner": "xunit",
+  "tools": {
+    "Microsoft.DotNet.Watcher.Tools": "1.1.0-preview4-final"
+  },
+
+  "frameworks": {
+    "netcoreapp1.1": {
+      "imports": [
+        "netstandard1.6.1",
+        "dnxcore50",
+        "portable-net451+win8"
+      ]
+    }
+  }
+}

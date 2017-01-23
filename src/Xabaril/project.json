@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "NETStandard.Library": "1.6.1",
+    "Microsoft.AspNetCore.Mvc": "1.1.0",
+    "System.Reflection": "4.3.0",
+    "Microsoft.Extensions.Logging.Abstractions": "1.1.0"
+  },
+  "buildOptions": {
+    "warningsAsErrors": true,
+    "embed": [
+      "UI/Assets/Index.html"
+    ]
+  },
+  "frameworks": {
+    "netstandard1.6.1": {
+      "imports": "dnxcore50"
+    }
+  }
+}
