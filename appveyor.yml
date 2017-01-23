@@ -1,0 +1,29 @@
+version: '{build}'  
+pull_requests:  
+  do_not_increment_build_number: true
+branches:  
+  only:
+  - master
+nuget:  
+  disable_publish_on_pr: true
+build_script:  
+- ps: .\Build.ps1
+test: off  
+artifacts:  
+- path: .\artifacts\**\*.nupkg
+  name: NuGet
+deploy:  
+- provider: NuGet
+  server: https://www.myget.org/F/xabaril/api/v2/package
+  api_key:
+    secure: JCTBs2rhU7P11G6ZbxDKOuQoyIKhILGcaKtILxCDwdVlnzvvaXc92nNXQlVsR7u0
+  skip_symbols: true
+  on:
+    branch: master
+- provider: NuGet
+  name: production
+  api_key:
+    secure: VrKppg5Qf8yZIX4JQpHWlu8CmOHon4TyEgl1H4YUBZAEEW5ICIp0afp2wn0Q6nop
+  on:
+    branch: master
+    appveyor_repo_tag: true
