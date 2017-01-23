@@ -62,11 +62,11 @@ namespace Xabaril.InMemoryStore
                 var configuration = (Dictionary<Type, Dictionary<string, object>>)_memoryCache
                     .Get(string.Format(CONFIGURATION_CACHE_KEY_FORMAT, featureName));
 
-                var parameters = configuration.Where(cfg => cfg.Key.FullName == activatorType)
+                var parameters = configuration.Where(cfg => cfg.Key.Name == activatorType)
                     .SingleOrDefault()
                     .Value;
 
-                if (parameters.ContainsKey(name))
+                if (parameters != null && parameters.ContainsKey(name))
                 {
                     parameter = new ActivatorParameter()
                     {

@@ -20,6 +20,8 @@ namespace UnitTests
             var provider = serviceCollection.BuildServiceProvider();
 
             //runtime services
+
+            (provider.GetService<IFeaturesService>()).Should().BeOfType<FeaturesService>();
             (provider.GetService<IFeaturesStore>()).Should().BeOfType<NoFeaturesStore>();
             (provider.GetService<IUserProvider>()).Should().BeOfType<HttpContextUserProvider>();
             (provider.GetService<IGeoLocationProvider>()).Should().BeOfType<NoGeoLocationProvider>();

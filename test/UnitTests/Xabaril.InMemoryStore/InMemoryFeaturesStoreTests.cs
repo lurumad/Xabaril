@@ -1,12 +1,12 @@
 ﻿using FluentAssertions;
-using global::Xabaril;
-using global::Xabaril.Core.Activators;
-using global::Xabaril.InMemoryStore;
-using global::Xabaril.Store;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xabaril;
+using Xabaril.Core.Activators;
+using Xabaril.InMemoryStore;
+using Xabaril.Store;
 using Xunit;
 
 namespace UnitTests.Xabaril.InMemoryStore
@@ -49,20 +49,34 @@ namespace UnitTests.Xabaril.InMemoryStore
                         @params.Add("USER", "uzorrilla");
                     })).Build();
 
-            (await store.FindParameterAsync("USER", featureName, typeof(UserActivator).FullName))
+            (await store.FindParameterAsync("USER", featureName, typeof(UserActivator).Name))
                 .Should().NotBeNull();
 
-            (await store.FindParameterAsync("USER", featureName, typeof(UserActivator).FullName)).Name
+            (await store.FindParameterAsync("USER", featureName, typeof(UserActivator).Name)).Name
                 .Should().Be("USER");
 
-            (await store.FindParameterAsync("USER", featureName, typeof(UserActivator).FullName)).FeatureName
+            (await store.FindParameterAsync("USER", featureName, typeof(UserActivator).Name)).FeatureName
                 .Should().Be(featureName);
 
-            (await store.FindParameterAsync("USER", featureName, typeof(UserActivator).FullName)).ActivatorType
-                .Should().Be(typeof(UserActivator).FullName);
+            (await store.FindParameterAsync("USER", featureName, typeof(UserActivator).Name)).ActivatorType
+                .Should().Be(typeof(UserActivator).Name);
 
-            (await store.FindParameterAsync("USER", featureName, typeof(UserActivator).FullName)).Value
+            (await store.FindParameterAsync("USER", featureName, typeof(UserActivator).Name)).Value
                 .Should().Be("uzorrilla");
+        }
+
+        [Fact]
+        public async Task return_null_if_use_fullname_type_value()
+        {
+            var store = new FeatureStoreBuilder()
+                .WithFeatureConfigurer(new FeatureConfigurer(featureName)
+                    .WithActivator<UserActivator>(@params =>
+                    {
+                        @params.Add("USER", "uzorrilla");
+                    })).Build();
+
+            (await store.FindParameterAsync("USER", featureName, typeof(UserActivator).FullName))
+                .Should().BeNull();
         }
 
         [Fact]
@@ -75,7 +89,7 @@ namespace UnitTests.Xabaril.InMemoryStore
                         @params.Add("USER", "uzorrilla");
                     })).Build();
 
-            (await store.FindParameterAsync("non_existing_parameter", featureName, typeof(UserActivator).FullName))
+            (await store.FindParameterAsync("non_existing_parameter", featureName, typeof(UserActivator).Name))
                 .Should().BeNull();
         }
 
